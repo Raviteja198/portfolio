@@ -18,7 +18,7 @@ export default function Hero(){
 
           <div className="mt-6 flex gap-3">
             <a href="#projects" className="px-4 py-2 rounded-md bg-cyan-500 text-black font-medium">Explore My Work</a>
-            <a href="#contact" className="px-4 py-2 rounded-md border border-slate-600 text-slate-200">Download Resume</a>
+            <a href="/resume.pdf" download aria-label="Download Resume" className="px-4 py-2 rounded-md border border-slate-600 text-slate-200">Download Resume</a>
           </div>
 
           <div className="mt-6 flex gap-4 text-slate-300">
