@@ -25,6 +25,37 @@ body{
   backdrop-filter: blur(6px);
 }
 
+/* make svgs and embedded visuals responsive inside cards */
+.card svg, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mobile tweaks */
+@media (max-width: 640px){
+  .max-w-7xl { padding-left: 1rem; padding-right: 1rem; }
+  header .md\:hidden { display: block; }
+  header nav a { font-size: 1rem; }
+}
+
+/* Prevent horizontal overflow on small devices */
+html, body, #__next {
+  overflow-x: hidden;
+}
+
+/* Ensure flex/grid children can shrink to avoid forcing horizontal scroll */
+*, *::before, *::after { box-sizing: border-box; }
+main, header, section, footer, .container, .max-w-7xl { min-width: 0; }
+
+/* Make media elements responsive */
+img, svg, video, canvas { max-width: 100%; height: auto; display: block; }
+
+/* Touch scroll smoothness on iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  html, body { -webkit-overflow-scrolling: touch; }
+}
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce){
   *{

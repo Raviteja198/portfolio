@@ -12,8 +12,8 @@ const nodes = [
 
 export default function VisualNode(){
   return (
-    <div className="w-full flex justify-center items-center">
-      <svg viewBox="0 0 400 300" className="max-w-sm w-full">
+    <div className="w-full flex justify-center items-center overflow-hidden">
+      <svg viewBox="0 0 400 300" className="w-full max-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="g1" x1="0" x2="1">
             <stop offset="0%" stopColor="#00e5ff" />
