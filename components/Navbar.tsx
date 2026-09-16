@@ -71,7 +71,7 @@ export default function Navbar(){
         {open && (
           <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-50">
             <div onClick={()=>setOpen(false)} className="fixed inset-0 bg-black/80 z-40" aria-hidden="true" />
-            <motion.div ref={menuRef} role="dialog" aria-modal="true" initial={{x:'100%'}} animate={{x:0}} exit={{x:'100%'}} transition={{type: reduce ? 'tween' : 'spring', stiffness: 300}} className="fixed right-0 top-0 bottom-0 h-full w-11/12 sm:w-80 bg-[#071018] shadow-2xl p-6 z-50 overflow-y-auto">
+            <motion.div ref={menuRef} role="dialog" aria-modal="true" initial={{x:'100%'}} animate={{x:0}} exit={{x:'100%'}} transition={{type: reduce ? 'tween' : 'spring', stiffness: 300}} className="fixed right-0 top-0 bottom-0 h-full w-full sm:w-80 bg-[#071018] shadow-2xl p-6 z-50 overflow-y-auto">
               <div className="flex flex-col h-full">
                 <div className="mb-4 flex items-center justify-between">
                   <div className="font-semibold">RAVITEJA.M</div>
