@@ -61,7 +61,7 @@ export default function Projects(){
           <div className={`project-reveal ${reveal ? 'visible' : ''}`}>
             <div className="meta">Project details</div>
             <p className="mt-2">Solo-developed and delivered a youth organization management app: admin/member dashboards, payments, PDF receipts, and reporting. Role-based access and secure auth.</p>
-            <div className="mt-3 flex gap-2">
+            <div className="mt-3 flex gap-2 reveal-actions">
               <a href="#" onClick={(e) => e.stopPropagation()} className="px-3 py-1 rounded-md bg-gradient-to-r from-indigo-500 to-teal-400 text-white font-medium shadow hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-300">Live demo</a>
               <a href="#" onClick={(e) => e.stopPropagation()} className="px-3 py-1 border rounded text-slate-200">Repo</a>
             </div>

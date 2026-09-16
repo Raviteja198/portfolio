@@ -74,6 +74,10 @@ body{
   .project-reveal { margin-top: 1rem; position: static; width: 100%; transform: none; }
 }
 
+@media (max-width: 640px) {
+  .project-reveal .reveal-actions { display: none; }
+}
+
 /* Prevent horizontal overflow on small devices */
 html, body, #__next {
   overflow-x: hidden;
