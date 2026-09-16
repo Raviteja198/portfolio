@@ -23,7 +23,34 @@ body{
   border: 1px solid rgba(255,255,255,0.05);
   box-shadow: 0 6px 18px rgba(2,6,23,0.6);
   backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
 }
+
+/* Colorful gradient overlay for cards */
+.card::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+  mix-blend-mode: screen;
+  opacity: 0.03;
+  transition: opacity 220ms ease, transform 300ms ease;
+}
+.card:hover::before{ opacity: 0.09; transform: scale(1.02); }
+
+/* Gradient variants (stronger and with subtle inner glow) */
+.card--violet::before{ background: radial-gradient(60% 40% at 10% 20%, rgba(124,58,237,0.22), transparent 20%), linear-gradient(135deg, rgba(99,102,241,0.08), rgba(168,85,247,0.06)); opacity:0.12 }
+.card--violet::after{ content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 40% at 20% 20%, rgba(124,58,237,0.06), transparent 30%); mix-blend-mode:screen; }
+.card--purple::before{ background: radial-gradient(60% 40% at 80% 20%, rgba(232,121,249,0.20), transparent 20%), linear-gradient(135deg, rgba(124,58,237,0.07), rgba(99,102,241,0.05)); opacity:0.12 }
+.card--purple::after{ content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 40% at 85% 25%, rgba(232,121,249,0.05), transparent 30%); mix-blend-mode:screen; }
+.card--orange::before{ background: radial-gradient(60% 40% at 20% 80%, rgba(249,115,22,0.20), transparent 20%), linear-gradient(135deg, rgba(245,158,11,0.08), rgba(234,88,12,0.05)); opacity:0.12 }
+.card--orange::after{ content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 40% at 20% 75%, rgba(249,115,22,0.05), transparent 30%); mix-blend-mode:screen; }
+.card--teal::before{ background: radial-gradient(60% 40% at 80% 80%, rgba(6,182,212,0.20), transparent 20%), linear-gradient(135deg, rgba(20,184,166,0.07), rgba(6,182,212,0.05)); opacity:0.12 }
+.card--teal::after{ content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 40% at 75% 80%, rgba(6,182,212,0.05), transparent 30%); mix-blend-mode:screen; }
+.card--blue::before{ background: radial-gradient(60% 40% at 50% 20%, rgba(99,102,241,0.22), transparent 20%), linear-gradient(135deg, rgba(59,130,246,0.08), rgba(99,102,241,0.05)); opacity:0.12 }
+.card--blue::after{ content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 40% at 55% 25%, rgba(99,102,241,0.06), transparent 30%); mix-blend-mode:screen; }
 
 /* make svgs and embedded visuals responsive inside cards */
 .card svg, svg {
@@ -54,6 +81,90 @@ img, svg, video, canvas { max-width: 100%; height: auto; display: block; }
 /* Touch scroll smoothness on iOS */
 @supports (-webkit-overflow-scrolling: touch) {
   html, body { -webkit-overflow-scrolling: touch; }
+}
+
+/* Cursor-follow glow used across interactive sections */
+.cursor-glow {
+  --mx: 50%; --my: 50%;
+  position: relative;
+}
+.cursor-glow::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(130,90,255,0.18) 0%, rgba(130,90,255,0.06) 10%, transparent 30%);
+  mix-blend-mode: screen;
+  transition: opacity 200ms ease, transform 200ms ease;
+  opacity: 0;
+}
+.cursor-glow.is-active::after { opacity: 1; }
+
+/* Global cursor glow using root variables */
+:root { --cursor-x: 50%; --cursor-y: 50%; }
+.cursor-visible::before {
+  content: '';
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(98,73,255,0.14) 0%, rgba(98,73,255,0.06) 12%, transparent 30%);
+  mix-blend-mode: screen;
+  transition: opacity 200ms linear;
+  opacity: 1;
+  z-index: 40;
+}
+.cursor-visible::before { opacity: 1; }
+.cursor-visible::after { opacity: 1; }
+
+/* Project card reveal overlay */
+.project-card { overflow: hidden; position: relative; }
+.project-reveal {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 52%;
+  background: linear-gradient(135deg, rgba(128,90,255,0.12), rgba(0,0,0,0.16));
+  transform: translateX(110%);
+  transition: transform 300ms cubic-bezier(.2,.9,.3,1);
+  padding: 1.25rem;
+}
+.project-reveal.visible { transform: translateX(0%); }
+.project-reveal .meta { color: #cbd5e1; font-size: .95rem; }
+
+@media (max-width: 768px) {
+  .project-reveal { position: static; width: 100%; transform: none; margin-top: 1rem; }
+}
+
+/* Full-page cursor layer */
+.cursor-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+}
+.cursor-blob {
+  position: fixed;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  transform: translate3d(calc(var(--cursor-x, 0px) - 50%), calc(var(--cursor-y, 0px) - 50%), 0);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  transition: width 200ms ease, height 200ms ease, opacity 200ms ease;
+  pointer-events: none;
+}
+.blob-1 {
+  background: radial-gradient(circle at 35% 30%, rgba(99,102,241,0.22), rgba(99,102,241,0.08) 30%, transparent 60%);
+  filter: blur(28px);
+}
+.blob-2 {
+  width: 160px;
+  height: 160px;
+  transform: translate3d(calc(var(--cursor-x2, 0px) - 50%), calc(var(--cursor-y2, 0px) - 50%), 0);
+  background: radial-gradient(circle at 40% 40%, rgba(236,72,153,0.18), rgba(99,102,241,0.06) 30%, transparent 60%);
+  filter: blur(34px);
+}
+
+@media (max-width: 1024px) {
+  /* disable heavy cursor effects on tablets and below */
+  .cursor-layer { display: none; }
 }
 
 /* reduced motion */

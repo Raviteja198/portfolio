@@ -15,7 +15,7 @@ export default function Skills(){
       <h3 className="text-2xl font-semibold">Cybersecurity Arsenal</h3>
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         {sections.map((s,i)=> (
-          <motion.div key={s.title} className="card p-4 rounded-lg" initial={{opacity:0, y:8}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:i*0.05}} whileHover={reduce?{}:{scale:1.01}}>
+          <motion.div key={s.title} className={`card p-4 rounded-lg ${i % 4 === 0 ? 'card--violet' : i % 4 === 1 ? 'card--blue' : i % 4 === 2 ? 'card--teal' : 'card--purple'}`} initial={{opacity:0, y:8}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{delay:i*0.05}} whileHover={reduce?{}:{scale:1.01}}>
             <h4 className="font-semibold">{s.title}</h4>
             <div className="mt-3 flex flex-wrap gap-2">
               {s.items.map(i=> (
@@ -28,15 +28,15 @@ export default function Skills(){
 
       <h3 className="text-2xl font-semibold mt-10">Full-Stack Development</h3>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <motion.div className="card p-4 rounded-lg" initial={{opacity:0, y:8}} whileInView={{opacity:1, y:0}} transition={{delay:0.02}}>
+        <motion.div className="card card--violet p-4 rounded-lg" initial={{opacity:0, y:8}} whileInView={{opacity:1, y:0}} transition={{delay:0.02}}>
           <h4 className="font-semibold">Languages</h4>
           <div className="mt-2 flex flex-wrap gap-2">{['Python','JavaScript','TypeScript','PHP','SQL'].map(t=> <span key={t} className="px-3 py-1 rounded-full bg-white/3 text-sm">{t}</span>)}</div>
         </motion.div>
-        <motion.div className="card p-4 rounded-lg" initial={{opacity:0, y:8}} whileInView={{opacity:1, y:0}} transition={{delay:0.04}}>
+        <motion.div className="card card--purple p-4 rounded-lg" initial={{opacity:0, y:8}} whileInView={{opacity:1, y:0}} transition={{delay:0.04}}>
           <h4 className="font-semibold">Frameworks & Libraries</h4>
           <div className="mt-2 flex flex-wrap gap-2">{['Django','DRF','Next.js','React','Tailwind CSS','Tkinter','OpenCV'].map(t=> <span key={t} className="px-3 py-1 rounded-full bg-white/3 text-sm">{t}</span>)}</div>
         </motion.div>
-        <motion.div className="card p-4 rounded-lg" initial={{opacity:0, y:8}} whileInView={{opacity:1, y:0}} transition={{delay:0.06}}>
+        <motion.div className="card card--orange p-4 rounded-lg" initial={{opacity:0, y:8}} whileInView={{opacity:1, y:0}} transition={{delay:0.06}}>
           <h4 className="font-semibold">Tools & Databases</h4>
           <div className="mt-2 flex flex-wrap gap-2">{['PostgreSQL','MySQL','Prisma','Git','GitHub','Vercel','VS Code'].map(t=> <span key={t} className="px-3 py-1 rounded-full bg-white/3 text-sm">{t}</span>)}</div>
         </motion.div>

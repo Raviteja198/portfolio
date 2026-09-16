@@ -1,6 +1,10 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import CursorEffects from '../components/CursorEffects';
+import dynamic from 'next/dynamic';
+
+const HeavySplashCursor = dynamic(() => import('../components/HeavySplashCursor'), { ssr: false });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -16,6 +20,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property="og:url" content="http://localhost:3000/" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <CursorEffects />
+      {process.env.NEXT_PUBLIC_SPLASH_CURSOR === 'true' && <HeavySplashCursor />}
       <Component {...pageProps} />
     </>
   );
